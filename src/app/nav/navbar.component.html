@@ -49,7 +49,7 @@
               [routerLink]="['user/profile']"
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
-              >Welcome John</a
+              >Welcome {{ authService.currentUser.firstName }}</a
             >
           </li>
         </ul>
