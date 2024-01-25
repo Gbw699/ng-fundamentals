@@ -8,7 +8,7 @@ export class EventService {
     let subject = new Subject<IEvent[]>();
 
     setTimeout(() => {
-      subject.next(events);
+      subject.next(EVENTS);
       subject.complete();
     }, 100);
 
@@ -16,11 +16,17 @@ export class EventService {
   }
 
   getEvent(id: number) {
-    return events.find((event) => event.id === id);
+    return EVENTS.find((event) => event.id === id);
+  }
+
+  saveEvent(event) {
+    event.id = 999;
+    event.session = [];
+    EVENTS.push(event);
   }
 }
 
-const events: IEvent[] = [
+const EVENTS: IEvent[] = [
   {
     id: 1,
     name: 'Angular Connect',
