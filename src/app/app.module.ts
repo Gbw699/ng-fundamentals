@@ -13,7 +13,7 @@ import {
 } from './events/index';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { TOASTR_TOKEN, JQ_TOKEN, IToastr, CollapsibleWellComponent, SimpleModal } from './common/index';
+import { TOASTR_TOKEN, JQ_TOKEN, IToastr, CollapsibleWellComponent, SimpleModal, ModalTriggerDirective } from './common/index';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './error/404.component';
@@ -36,6 +36,7 @@ let jQuery = window["$"]
     SessionListComponent,
     CollapsibleWellComponent,
     SimpleModal,
+    ModalTriggerDirective,
     DurationPipe,
   ],
   imports: [
