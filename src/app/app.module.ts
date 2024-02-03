@@ -13,15 +13,15 @@ import {
 } from './events/index';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { TOASTR_TOKEN, IToastr } from './common/toastr.service';
+import { TOASTR_TOKEN, JQ_TOKEN, IToastr, CollapsibleWellComponent } from './common/index';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './error/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
-declare let toastr: IToastr
+let toastr: IToastr = window["toastr"]
+let jQuery = window["$"]
 
 @NgModule({
   declarations: [
@@ -46,6 +46,7 @@ declare let toastr: IToastr
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
     EventRouteActivator,
     AuthService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
