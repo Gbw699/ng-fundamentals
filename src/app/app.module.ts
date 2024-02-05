@@ -11,6 +11,7 @@ import {
   SessionListComponent,
   DurationPipe,
   UpVote,
+  LocationValidatorDirective,
 } from './events/index';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
@@ -47,6 +48,7 @@ let jQuery = window['$'];
     UpVote,
     SimpleModal,
     ModalTriggerDirective,
+    LocationValidatorDirective,
     DurationPipe,
   ],
   imports: [
