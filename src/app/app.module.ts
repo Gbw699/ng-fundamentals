@@ -10,18 +10,26 @@ import {
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
+  UpVote,
 } from './events/index';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
-import { TOASTR_TOKEN, JQ_TOKEN, IToastr, CollapsibleWellComponent, SimpleModal, ModalTriggerDirective } from './common/index';
+import {
+  TOASTR_TOKEN,
+  JQ_TOKEN,
+  IToastr,
+  CollapsibleWellComponent,
+  SimpleModal,
+  ModalTriggerDirective,
+} from './common/index';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './error/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-let toastr: IToastr = window["toastr"]
-let jQuery = window["$"]
+let toastr: IToastr = window['toastr'];
+let jQuery = window['$'];
 
 @NgModule({
   declarations: [
@@ -35,6 +43,7 @@ let jQuery = window["$"]
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    UpVote,
     SimpleModal,
     ModalTriggerDirective,
     DurationPipe,
@@ -55,7 +64,7 @@ let jQuery = window["$"]
   ],
   bootstrap: [EventsAppComponent],
 })
-export class AppModule { }
+export class AppModule {}
 
 export function checkDirtyState(component: CreateEventComponent) {
   if (component.isDirty)
