@@ -1,5 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
-import { EventEmitter } from 'protractor';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'upvote',
@@ -24,6 +23,6 @@ export class UpVote {
   @Output() vote = new EventEmitter();
 
   onClick() {
-    this.vote.emit({});
+    this.vote.emit('');
   }
 }
