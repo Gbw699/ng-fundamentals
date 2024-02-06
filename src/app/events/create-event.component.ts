@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from './shared';
+import { NgModelGroup } from '@angular/forms';
 
 @Component({
   templateUrl: './create-event.component.html',
@@ -33,7 +34,7 @@ export class CreateEventComponent {
   newEvent;
   isDirty = true;
 
-  constructor(private router: Router, private eventService: EventService) {}
+  constructor(private router: Router, private eventService: EventService) { }
 
   saveEvent(formValues) {
     this.eventService.saveEvent(formValues);

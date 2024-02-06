@@ -156,8 +156,8 @@
       <label for="onlineUrl">Online Url:</label>
       <input
         (ngModel)="(newEvent.onlineUrl)"
-        (change)="
-          locationGroup.control.controls.address.updateValueAndValidity()
+        (ngModelChange)="
+          this.locationGroup.control.controls.address.updateValueAndValidity()
         "
         name="onlineUrl"
         id="onlineUrl"
