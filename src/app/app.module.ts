@@ -29,6 +29,7 @@ import { Error404Component } from './error/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VoterService } from 'src/app/events/event-details/voter.service';
+import { HttpClientModule } from '@angular/common/http';
 
 let toastr: IToastr = window['toastr'];
 let jQuery = window['$'];
@@ -56,6 +57,7 @@ let jQuery = window['$'];
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     EventService,

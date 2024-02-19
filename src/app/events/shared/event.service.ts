@@ -1,18 +1,24 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { IEvent, ISession } from './event.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class EventService {
+  constructor(private http: HttpClient) {}
+
   getEvents(): Observable<IEvent[]> {
-    let subject = new Subject<IEvent[]>();
+    return this.http
+      .get<IEvent[]>('/api/events')
+      .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
+  }
 
-    setTimeout(() => {
-      subject.next(EVENTS);
-      subject.complete();
-    }, 100);
-
-    return subject;
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
   getEvent(id: number) {
@@ -31,26 +37,28 @@ export class EventService {
   }
 
   searchSessions(searchTerm: string) {
-    let term = searchTerm.toLocaleLowerCase()
-    let results: ISession[] = []
+    let term = searchTerm.toLocaleLowerCase();
+    let results: ISession[] = [];
 
-    EVENTS.forEach(event => {
-      let matchingSessions = event.sessions.filter(session => session.name.toLocaleLowerCase().indexOf(term) > -1)
+    EVENTS.forEach((event) => {
+      let matchingSessions = event.sessions.filter(
+        (session) => session.name.toLocaleLowerCase().indexOf(term) > -1
+      );
 
       matchingSessions = matchingSessions.map((session: any) => {
-        session.eventId = event.id
-        return session
-      })
+        session.eventId = event.id;
+        return session;
+      });
 
-      results = results.concat(matchingSessions)
-    })
+      results = results.concat(matchingSessions);
+    });
 
-    let emitter = new EventEmitter(true)
+    let emitter = new EventEmitter(true);
     setTimeout(() => {
       emitter.emit(results);
-    }, 100)
+    }, 100);
 
-    return emitter
+    return emitter;
   }
 }
 
