@@ -24,17 +24,17 @@ export class EventDetailsComponents implements OnInit {
   event: IEvent;
   addMode: boolean;
   filterBy: string = 'all';
-  sortBy: string = "votes"
+  sortBy: string = 'votes';
 
   constructor(
     private eventsService: EventService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.event = this.eventsService.getEvent(+params["id"])
-      this.addMode = false
+    this.route.data.forEach((data) => {
+      this.event = data['event'];
+      this.addMode = false;
     });
   }
 
@@ -49,7 +49,7 @@ export class EventDetailsComponents implements OnInit {
     );
     session.id = nextId + 1;
     this.event.sessions.push(session);
-    this.eventsService.updateEvent(this.event);
+    this.eventsService.saveEvent(this.event).subscribe();
     this.addMode = false;
   }
 
