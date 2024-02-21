@@ -41,6 +41,19 @@ export class AuthService {
     return !!this.currentUser;
   }
 
+  checkAuthenticationSatus() {
+    this.http
+      .get('/api/currentIdentity')
+      .pipe(
+        tap((data) => {
+          if (data instanceof Object) {
+            this.currentUser = <IUser>data;
+          }
+        })
+      )
+      .subscribe();
+  }
+
   updateCurentUser(firstName: string, lastName: string) {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
