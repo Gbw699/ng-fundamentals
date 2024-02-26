@@ -10,9 +10,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  loginUser(userName: string, password: string) {
-    let loginInfo = { username: userName, password: password };
-    let options = {
+  loginUser(userName: string, password: string): any {
+    const loginInfo = { username: userName, password: password };
+    const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
@@ -37,11 +37,11 @@ export class AuthService {
     // };
   }
 
-  isAuthenticated() {
+  isAuthenticated(): boolean {
     return !!this.currentUser;
   }
 
-  checkAuthenticationSatus() {
+  checkAuthenticationSatus(): void {
     this.http
       .get('/api/currentIdentity')
       .pipe(
@@ -54,11 +54,11 @@ export class AuthService {
       .subscribe();
   }
 
-  updateCurentUser(firstName: string, lastName: string) {
+  updateCurentUser(firstName: string, lastName: string): any {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
 
-    let options = {
+    const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
 
@@ -69,10 +69,10 @@ export class AuthService {
     );
   }
 
-  logout() {
+  logout(): any {
     this.currentUser = undefined;
 
-    let options = {
+    const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     };
     return this.http.post('/api/logout', {}, options);

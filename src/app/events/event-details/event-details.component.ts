@@ -23,26 +23,26 @@ import { IEvent, ISession } from '../shared/event.model';
 export class EventDetailsComponents implements OnInit {
   event: IEvent;
   addMode: boolean;
-  filterBy: string = 'all';
-  sortBy: string = 'votes';
+  filterBy = 'all';
+  sortBy = 'votes';
 
   constructor(
     private eventsService: EventService,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.data.forEach((data) => {
       this.event = data['event'];
       this.addMode = false;
     });
   }
 
-  addSession() {
+  addSession(): void {
     this.addMode = true;
   }
 
-  saveNewSession(session: ISession) {
+  saveNewSession(session: ISession): void {
     const nextId = Math.max.apply(
       null,
       this.event.sessions.map((s) => s.id)
@@ -53,7 +53,7 @@ export class EventDetailsComponents implements OnInit {
     this.addMode = false;
   }
 
-  cancelAddSession() {
+  cancelAddSession(): void {
     this.addMode = false;
   }
 }

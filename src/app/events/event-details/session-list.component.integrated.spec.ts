@@ -7,12 +7,12 @@ import { DurationPipe } from '../shared';
 import { By } from '@angular/platform-browser';
 
 describe('SessionListComponent', () => {
-  let mockAuthService,
-    mockVoterService,
-    fixture: ComponentFixture<SessionListComponent>,
-    component: SessionListComponent,
-    element: HTMLElement,
-    debugEl: DebugElement;
+  let mockAuthService;
+  let mockVoterService;
+  let fixture: ComponentFixture<SessionListComponent>;
+  let component: SessionListComponent;
+  let element: HTMLElement;
+  let debugEl: DebugElement;
 
   beforeEach(() => {
     mockAuthService = {
@@ -26,9 +26,7 @@ describe('SessionListComponent', () => {
         { provide: AuthService, useValue: mockAuthService },
         { provide: VoterService, useValue: mockVoterService },
       ],
-      schemas:[
-        NO_ERRORS_SCHEMA
-      ]
+      schemas: [NO_ERRORS_SCHEMA],
     });
     fixture = TestBed.createComponent(SessionListComponent);
     component = fixture.componentInstance;

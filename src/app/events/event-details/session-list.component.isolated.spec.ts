@@ -3,7 +3,8 @@ import { SessionListComponent } from './session-list.component';
 
 describe('SessionListComponent', () => {
   let component: SessionListComponent;
-  let mockAuthService, mockVoterService;
+  let mockAuthService;
+  let mockVoterService;
 
   beforeEach(() => {
     component = new SessionListComponent(mockAuthService, mockVoterService);

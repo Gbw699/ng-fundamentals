@@ -16,7 +16,7 @@ export class SessionListComponent implements OnChanges {
 
   constructor(public auth: AuthService, private voterService: VoterService) {}
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (this.sessions) {
       this.filterSessions(this.filterBy);
       this.sortBy === 'name'
@@ -25,7 +25,7 @@ export class SessionListComponent implements OnChanges {
     }
   }
 
-  toggleVote(session: ISession) {
+  toggleVote(session: ISession): void {
     if (this.userHasVoted(session)) {
       this.voterService.deleteVoter(
         this.eventId,
@@ -44,14 +44,14 @@ export class SessionListComponent implements OnChanges {
     }
   }
 
-  userHasVoted(session: ISession) {
+  userHasVoted(session: ISession): boolean {
     return this.voterService.userHasVoted(
       session,
       this.auth.currentUser?.userName
     );
   }
 
-  filterSessions(filter) {
+  filterSessions(filter): void {
     if (filter === 'all') {
       this.visibleSessions = this.sessions.slice(0);
     } else {
@@ -62,12 +62,16 @@ export class SessionListComponent implements OnChanges {
   }
 }
 
-function sortByNameAsc(s1: ISession, s2: ISession) {
-  if (s1.name > s2.name) return 1;
-  else if (s1.name === s2.name) return 0;
-  else return -1;
+function sortByNameAsc(s1: ISession, s2: ISession): number {
+  if (s1.name > s2.name) {
+    return 1;
+  } else if (s1.name === s2.name) {
+    return 0;
+  } else {
+    return -1;
+  }
 }
 
-function sortByVotesDesc(s1: ISession, s2: ISession) {
+function sortByVotesDesc(s1: ISession, s2: ISession): number {
   return s2.voters.length - s1.voters.length;
 }

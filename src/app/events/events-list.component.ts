@@ -24,7 +24,7 @@ export class EventsListComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.events = this.route.snapshot.data['events'];
   }
 }

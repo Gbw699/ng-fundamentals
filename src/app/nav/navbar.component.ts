@@ -29,7 +29,7 @@ export class NavBarComponent implements OnInit {
   foundSessions: ISession[];
   events: IEvent[];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.eventService.getEvents().subscribe((events) => {
       this.events = events;
     });
@@ -40,7 +40,7 @@ export class NavBarComponent implements OnInit {
     private eventService: EventService
   ) {}
 
-  searchSessions(searchTerm) {
+  searchSessions(searchTerm): void {
     this.eventService.searchSessions(searchTerm).subscribe((sessions) => {
       this.foundSessions = sessions;
     });

@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  saveProfile(formValues) {
+  saveProfile(formValues): void {
     if (this.profileForm.valid) {
       this.authService
         .updateCurentUser(formValues.firstName, formValues.lastName)
@@ -68,19 +68,19 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  validateFirtsName() {
+  validateFirtsName(): boolean {
     return this.firstName.valid || this.firstName.untouched;
   }
 
-  validateLastName() {
+  validateLastName(): boolean {
     return this.lastName.valid || this.lastName.untouched;
   }
 
-  cancel() {
+  cancel(): void {
     this.router.navigate(['events']);
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout().subscribe(() => {
       this.router.navigate(['/user/login']);
     });

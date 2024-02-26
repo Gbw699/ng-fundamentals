@@ -22,7 +22,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login(formValue) {
+  login(formValue): void {
     this.authService
       .loginUser(formValue.userName, formValue.password)
       .subscribe((resp) => {
